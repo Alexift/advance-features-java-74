@@ -87,6 +87,16 @@ public class MovieRatings {
         displayList(movieSortedList);
 
         //Colections si sort
+        List<Movie> movieSrtedList2 = new ArrayList<>(movieUnorderedSet);
+
+        Collections.sort(
+                movieSrtedList2,
+                Comparator.comparing(Movie::getRating)
+                        .reversed()
+
+        );
+        System.out.println("Lista 2 sortata este :");
+        displayList(movieSrtedList2);
 
         /**
          * Comparator.comparing(Movie::getRating)
