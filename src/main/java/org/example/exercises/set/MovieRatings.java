@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
-class Movie {
+class Movie implements Comparable <Movie> {
     private String title;
     private Double rating;
     private LocalDate dateTime;
@@ -52,11 +52,18 @@ class Movie {
                 ", dateTime=" + dateTime +
                 '}';
     }
+
+
+
+    @Override
+    public int compareTo(Movie o) {
+        return this.getTitle().compareTo(o.getTitle());
+    }
 }
 
 public class MovieRatings {
 
-    public static void displayList(List<Movie> list) {
+    public static void displayList(Collection<Movie> list) {
 
         for (Movie it : list) {
             System.out.println(it.getTitle() + " " + it.getRating() + " " + it.getDateTime());
@@ -97,6 +104,14 @@ public class MovieRatings {
         );
         System.out.println("Lista 2 sortata este :");
         displayList(movieSrtedList2);
+
+        SortedSet<Movie> movieList2 = new TreeSet<>();
+
+        movieList2.add(new Movie("Inceptio", 3.1, LocalDate.of(2024, 12, 3)));
+        movieList2.add(new Movie("Terminator", 6.9, LocalDate.of(2024, 1, 30)));
+        movieList2.add(new Movie("Home Alone ", 9.5, LocalDate.of(2022, 5, 6)));
+        System.out.println("Setul sortat contine:");
+        displayList(movieList2);
 
         /**
          * Comparator.comparing(Movie::getRating)
